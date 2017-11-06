@@ -1,0 +1,20 @@
+{
+  "name": "MedLabs",
+  "version": "1.0.0",
+  "description": "Custom WordPress medical urgent care theme built for demonstration purposes.",
+  "main": "index.php",
+  "scripts": {
+    "postinstall": "gulp copy-assets"
+  },
+  "author": "Timothy Fisher",
+  "devDependencies": {
+    "autoprefixer": "^6.5.2",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "^2.3.2"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}

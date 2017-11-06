@@ -1,0 +1,29 @@
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: $theme-text;
+	font-family: $font__main;
+	font-weight: $font-weight-light;
+	@include font-size(0.8);
+	line-height: $font__line-height-body;
+	letter-spacing: -0.02em;
+
+	@media only screen and (min-width: $device-sm) {
+		@include font-size(0.7);
+	}
+
+	@media only screen and (min-width: $device-md) {
+		font-size: 1.4vw;
+	}
+
+	@media only screen and (min-width: $device-lg) {
+		@include font-size(0.8);
+	}
+}
+
+@import "headings";
+
+@import "copy";

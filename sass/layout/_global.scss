@@ -1,0 +1,20 @@
+.site {
+  transition: transform 0.4s;
+  transform: translate3d(0, 0, 0);
+
+  &.mobile-navigation-toggled {
+    transform: translate3d(calc(-100% + 55px), 0, 0);
+  }
+}
+
+.container {
+  position: relative;
+  max-width: $site-max-width;
+  margin: 0 auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.flex-container {
+  display: flex;
+}
