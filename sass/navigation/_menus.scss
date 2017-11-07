@@ -1,3 +1,50 @@
+#supernav {
+	display: none;
+	position: relative;
+	min-height: 30px;
+	transition: all 0.5s ease-out;
+	background-color: #f7f7f7;
+	font-size: .86666667em;
+	overflow: hidden; // for the rotated box shadow on :before
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		box-shadow: 0px 2px 8px 0px rgba(#000,0.15);
+		display: block;
+		pointer-events: none;
+		transform: rotateZ(180deg);
+	}
+
+	.container > .flex-container {
+		justify-content: flex-end;
+	}
+
+	.nav-menu {
+
+		> li + li {
+			border-left: 1px solid #b6b3af;
+		}
+
+		a {
+			display: block;
+			padding: 0 15px;
+			line-height: 30px;
+			font-weight: $font-weight-strongest;
+			transition: color 0.2s linear;
+			text-transform: uppercase;
+		}
+	}
+
+	@media only screen and (min-width: $device-sm) {
+		display: block;
+	}
+}
+
 #site-navigation {
 	display: none;
 
@@ -44,7 +91,7 @@
 
 		a {
 			font-size: 0.875em;
-			font-weight: $font-weight-bold;
+			font-weight: $font-weight-stronger;
 			white-space: nowrap;
 			line-height: 50px;
 		}
@@ -91,9 +138,14 @@
 	transform: translateX(100%);
 	transition: transform 0.4s, visibility 0s 0.3s;
 	height: 100vh;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	visibility: hidden;
 	background: $theme-primary;
+
+	.sticky & {
+		top: $site-navbar-mobile-height;
+	}
 
 	ul {
 		padding: 13px 0;

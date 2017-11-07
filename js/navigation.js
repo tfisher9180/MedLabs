@@ -72,15 +72,17 @@
 	$( window ).on( 'scroll resize load', function() {
 		var scroll = $( window ).scrollTop();
 		var header = $( '#masthead .site-branding' ).height();
+		var supernav = $( '#supernav' ).is( ':visible' ) ? $( '#supernav' ).outerHeight() : 0;
 		var navbar = $( '#masthead .site-navbar' ).height();
-		var adminBar = $( '#wpadminbar' ).height();
+		var adminBar = $( '#wpadminbar' ).is( ':visible' ) ? $( '#wpadminbar' ).outerHeight() : 0;
 
 		var stick;
 
+		// below 600px admin bar is position: absolute so we include it in the scroll distance
 		if ( $( window ).width() < 600 ) {
-			stick = scroll >= header + adminBar;
+			stick = scroll >= header + adminBar + supernav;
 		} else {
-			stick = scroll >= header;
+			stick = scroll >= header + supernav;
 		}
 
 		$( 'body' ).toggleClass( 'sticky', stick );

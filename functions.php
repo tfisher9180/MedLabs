@@ -110,7 +110,7 @@ function medlabs_fonts_url() {
 	$montserrat = _x( 'on', 'Montserrat font: on or off', 'medlabs' );
 
 	if ( 'off' !== $montserrat ) {
-		$font_families[] = 'Montserrat:300,400,500,700';
+		$font_families[] = 'Montserrat:300,400,500,600,700';
 	}
 
 	if ( in_array( 'on', array( $montserrat ) ) ) {

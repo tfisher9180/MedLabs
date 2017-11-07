@@ -51,7 +51,7 @@
 	<?php
 		wp_nav_menu( array(
 			'theme_location' => 'secondary-navigation',
-			'menu_id'        => 'secondary-navigation-menu',
+			'menu_id'        => 'mobile-secondary-navigation-menu',
 			'menu_class'		 => 'nav-menu secondary-nav-menu',
 			'container'			 => 'false',
 		) );
@@ -64,7 +64,14 @@
 	<div id="supernav" class="supernav">
 		<div class="container">
 			<div class="flex-container">
-
+				<?php
+					wp_nav_menu( array(
+						'theme_location' => 'secondary-navigation',
+						'menu_id'        => 'secondary-navigation-menu',
+						'menu_class'		 => 'nav-menu secondary-nav-menu flex-container',
+						'container'			 => 'false',
+					) );
+				?>
 			</div>
 		</div>
 	</div>

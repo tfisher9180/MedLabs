@@ -21,6 +21,7 @@ In order to build this project do the following:
 
 1. Clone this repository.
 2. Run `npm install`, which will run `gulp copy-assets` automatically to capture assets.
+3. Import sql file at `sql/wordpress.sql` into your existing WordPress installation (change `$table_prefix` in your `wp-config.php` file to `medlabs_`).
 3. Run gulp `gulp`.
 
 THIS PROJECT IS STILL IN PROGRESS.
