@@ -13,6 +13,18 @@ Currently copying styles from www.fastmed.com to get the project off the ground.
 * Various customizer options to make the user experience unique.
 * Online check-in coming soon.
 
+###### This theme will feature:
+
+* Immediate language translations for the user.
+* Desktop "Super Navigation" with site quick links.
+* Sliding mobile submenu navigation.
+* Optional mobile/desktop WordPress menu separation via Customizer.
+* Modern navigation accessibility for tablets.
+* Seamless mobile/tablet/desktop experience.
+* Online check-in.
+* Career listings.
+* Flexible sticky navigation and modern mobile menu.
+
 
 Getting Started (personal reminder)
 ---------------
