@@ -11,7 +11,6 @@ Currently copying styles from www.fastmed.com to get the project off the ground.
 * Navigation script at `js/navigation.js` used to provide seamless support on all devices.
 * SVG logo for high detail branding and quality.
 * Various customizer options to make the user experience unique.
-* Online check-in coming soon.
 
 ###### This theme will feature:
 
