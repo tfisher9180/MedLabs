@@ -5,7 +5,7 @@ Custom WordPress theme built from Underscores for EDUCATIONAL as well as DEMONST
 
 Currently copying styles from www.fastmed.com to get the project off the ground. Attempting to recreate the theme by changing the color scheme and various features towards the end. I'm not creating a child theme purely for the sake of learning to create custom WordPress themes from SCRATCH using Underscores.
 
-#### The stack and tech features:
+###### The stack and tech features:
 
 * Underscores as the theme base.
 * NPM as the package manager.
@@ -15,7 +15,7 @@ Currently copying styles from www.fastmed.com to get the project off the ground.
 * SVG logo for high detail branding and quality.
 * Customizer API for various theme options.
 
-##### This theme will feature:
+###### This theme will feature:
 
 * Immediate language translations for the user.
 * Desktop "Super Navigation" with site quick links.
