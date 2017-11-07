@@ -42,12 +42,24 @@ if ( ! function_exists( 'medlabs_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in three locations.
-		register_nav_menus( array(
+		$nav_menus = array(
 			'site-navigation' 			=> esc_html__( 'Site Navigation', 'medlabs' ),
-			'mobile-navigation' 		=> esc_html__( 'Mobile Navigation', 'medlabs' ),
 			'secondary-navigation'	=> esc_html__( 'Secondary Navigation', 'medlabs' ),
-		) );
+		);
+
+		if ( get_theme_mod( 'separate_desktop_mobile_menu' ) == 1 ) {
+			$nav_menus[ 'mobile-navigation' ] = esc_html__( 'Mobile Navigation', 'medlabs' );
+
+			if ( ! wp_get_nav_menu_object( 'Mobile Navigation' ) ) {
+				$menu_id = wp_create_nav_menu( 'Mobile Navigation' );
+				$locations = get_theme_mod( 'nav_menu_locations' );
+				$locations[ 'mobile-navigation' ] = $menu_id;
+				set_theme_mod( 'nav_menu_locations', $locations );
+			}
+		}
+
+		// This theme uses wp_nav_menu() in two-three locations.
+		register_nav_menus( $nav_menus );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments

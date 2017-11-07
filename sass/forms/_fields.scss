@@ -1,3 +1,21 @@
+.form-container {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+
+	.form-control {
+		flex: 1 1 100%;
+	}
+}
+
+input,
+textarea,
+select {
+	font-family: $font__main;
+	letter-spacing: -0.02em;
+	font-weight: $font-weight-light;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -14,13 +32,27 @@ input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
 textarea {
-	color: $color__text-input;
-	border: 1px solid $color__border-input;
-	border-radius: 3px;
-	padding: 3px;
+	background: #e6e6e6;
+	color: #999;
+	font-size: 1.067em;
+	padding: 0 10px;
+	height: 45px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	width: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	background-image: none;
+	border-bottom: 2px solid transparent;
+	transition: color 0.2s linear, background 0.2s linear, border 0.2s linear;
 
 	&:focus {
-		color: $color__text-input-focus;
+		color: $theme-text;
+		background: #fff;
+		border-bottom-color: $theme-primary;
+		outline: none;
 	}
 }
 

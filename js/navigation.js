@@ -6,10 +6,13 @@
  */
 
 (function( $ ) {
-	var site, masthead, menuToggle, siteNavContain, siteNavigation;
+
+	// init vars
+	var site, masthead, menuToggle, siteNavContain, siteNavigation, searchToggle;
 
 	function initMobileNavigation( container ) {
 		var parentLink = container.find( '.menu-item-has-children > a, .page_item_has_children > a' );
+		// make sure all mobile navigation links with sub-menus activate their sub-menus.
 		parentLink.attr( 'href', '#' );
 
 		parentLink.click( function( e ) {
@@ -36,27 +39,6 @@
 		});
 	}
 
-	//function initMainNavigation( container ) {
-
-		// Add dropdown toggle that displays child menu items.
-		//var dropdownToggle = $( '<button />', { 'class': 'dropdown-toggle', 'aria-expanded': false })
-			//.append( $( '<span />', { 'class': 'screen-reader-text', text: medlabsScreenReaderText.expand }) );
-		//container.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( dropdownToggle );
-
-		/*container.find( '.dropdown-toggle' ).click( function( e ) {
-			var _this = $( this ),
-				screenReaderSpan = _this.find( '.screen-reader-text' );
-
-			e.preventDefault();
-			_this.toggleClass( 'toggled-on' );
-			_this.next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
-
-			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
-
-			screenReaderSpan.text( screenReaderSpan.text() === medlabsScreenReaderText.expand ? medlabsScreenReaderText.collapse : medlabsScreenReaderText.expand );
-		});*/
-	//}
-
 	initMobileNavigation( $( '#mobile-navigation' ) );
 
 	site 					 = $( '#page' );
@@ -64,6 +46,7 @@
 	menuToggle     = masthead.find( '.menu-toggle' );
 	siteNavContain = $( '.site-navigation' );
 	siteNavigation = siteNavContain.find( '> ul' );
+	searchToggle	 = $( '.nav-search > a' );
 
 	// Enable menuToggle.
 	(function() {
@@ -78,7 +61,7 @@
 
 		menuToggle.on( 'click.medlabs', function( e ) {
 			e.preventDefault();
-			site.toggleClass( 'mobile-navigation-toggled' );
+			site.add( $( 'body' ) ).toggleClass( 'mobile-navigation-toggled' );
 			siteNavContain.add( menuToggle ).toggleClass( 'toggled-on' );
 
 			$( this ).attr( 'aria-expanded', siteNavContain.hasClass( 'toggled-on' ) );
@@ -90,9 +73,24 @@
 		var scroll = $( window ).scrollTop();
 		var header = $( '#masthead .site-branding' ).height();
 		var navbar = $( '#masthead .site-navbar' ).height();
+		var adminBar = $( '#wpadminbar' ).height();
 
-		$( 'body' ).toggleClass( 'sticky', scroll >= header );
-		$( 'body' ).css( 'padding-top', $( 'body' ).hasClass( 'sticky' ) && $( window ).width() > 768 ? navbar+'px' : 0 );
+		var stick;
+
+		if ( $( window ).width() < 600 ) {
+			stick = scroll >= header + adminBar;
+		} else {
+			stick = scroll >= header;
+		}
+
+		$( 'body' ).toggleClass( 'sticky', stick );
+		$( 'body' ).css( 'padding-top', $( 'body' ).hasClass( 'sticky' ) ? navbar+'px' : 0 );
+	});
+
+	// Toggle search bar
+	searchToggle.on( 'click.medlabs', function( e ) {
+		e.preventDefault();
+		$( 'body' ).toggleClass( 'show-search' );
 	});
 
 	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.

@@ -1,22 +1,35 @@
+.btn,
 button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: $color__border-button;
-	border-radius: 3px;
-	background: $color__background-button;
-	color: rgba(0, 0, 0, .8);
-	@include font-size(0.75);
-	line-height: 1;
-	padding: .6em 1em .4em;
+	border: 2px solid;
+	border-color: $theme-primary;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	padding: 9.5px 17.5px;
+	text-align: center;
+	font-weight: $font-weight-bold;
+	border-radius: 0;
+	background: transparent;
+	transition: color 0.2s linear, border-color 0.2s linear, background-color 0.2s linear;
+	position: relative;
+	white-space: nowrap;
+	line-height: 1.2;
+	color: $theme-primary;
+	@include font-size(1);
 
 	&:hover {
-		border-color: $color__border-button-hover;
+		background: $theme-primary-alt!important;
+		border-color: $theme-primary-alt;
+		color: #fff;
 	}
 
 	&:active,
 	&:focus {
-		border-color: $color__border-button-focus;
+		border-color: $theme-primary-alt;
+		outline: none;
 	}
 }

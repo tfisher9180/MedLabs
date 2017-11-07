@@ -42,7 +42,7 @@
 <nav id="mobile-navigation" class="site-navigation">
 	<?php
 		wp_nav_menu( array(
-			'theme_location' => 'mobile-navigation',
+			'theme_location' => get_theme_mod( 'separate_desktop_mobile_menu' ) == 1 ? 'mobile-navigation' : 'site-navigation',
 			'menu_id'        => 'mobile-navigation-menu',
 			'menu_class'		 => 'nav-menu site-nav-menu',
 			'container'			 => 'false',
@@ -60,6 +60,14 @@
 
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'medlabs' ); ?></a>
+
+	<div id="supernav" class="supernav">
+		<div class="container">
+			<div class="flex-container">
+
+			</div>
+		</div>
+	</div>
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
@@ -98,7 +106,13 @@
 					<?php } ?>
 					<?php if ( $site_navigation_search ) { ?>
 					<div class="nav-btn nav-search">
-						<a href="#"><i class="fa fa-search"></i></a>
+						<a href="#">
+							<span class="screen-reader-text"><?php esc_html_e( 'Toggle search bar', 'medlabs' ); ?></span>
+							<i class="fa fa-search"></i>
+						</a>
+						<div class="search-bar">
+							<?php get_search_form(); ?>
+						</div>
 					</div>
 					<?php } ?>
 					<div class="nav-btn nav-toggle">
