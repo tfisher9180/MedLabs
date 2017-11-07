@@ -147,26 +147,32 @@
 
 	.nav-menu {
 
-		.current_page_item > a,
-		.current-menu-item > a,
-		.current_page_ancestor > a,
-		.current-menu-ancestor > a {
-			font-weight: $font-weight-bold;
-			color: $theme-primary-alt;
+		.current_page_item,
+		.current-menu-item,
+		.current_page_ancestor,
+		.current-menu-ancestor {
 
-			&:before {
-				content: '';
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 4px 0 4px 6px;
-				border-color: transparent transparent transparent #101010;
-				position: absolute;
-				display: block;
-				top: 50%;
-				left: 30px;
-				transform: translate(-100%, -50%);
-				margin-left: -9.5px;
+			> a {
+				font-weight: $font-weight-bold;
+				color: $theme-primary-alt;
+			}
+
+			&:not(.menu-item-has-children):not(.page_item_has_children) {
+
+				> a:before {
+					content: '';
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 4px 0 4px 6px;
+					border-color: transparent transparent transparent #101010;
+					position: absolute;
+					display: block;
+					top: 50%;
+					left: 30px;
+					transform: translate(-100%, -50%);
+					margin-left: -9.5px;
+				}
 			}
 		}
 	}

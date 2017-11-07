@@ -1,11 +1,16 @@
 .site {
-  transition: transform 0.4s;
-  transform: translate3d(0, 0, 0);
+  position: relative;
+  transition: left 0.4s;
+  left: 0;
+  //transform: translate3d(0, 0, 0); // can't use these because of a bug in chrome and firefox
 
   &.mobile-navigation-toggled {
-    transform: translate3d(calc(-100% + 55px), 0, 0);
+    left: calc( -100% + 55px );
+    //transform: translate3d(calc(-100% + 55px), 0, 0); // can't use these because of a bug in chrome and firefox
   }
 }
+
+// https://www.sitepoint.com/community/t/css3-tip-of-the-week-no-1/32066
 
 .container {
   position: relative;
