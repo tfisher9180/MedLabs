@@ -36,7 +36,7 @@
 		});
 	}
 
-	function initMainNavigation( container ) {
+	//function initMainNavigation( container ) {
 
 		// Add dropdown toggle that displays child menu items.
 		//var dropdownToggle = $( '<button />', { 'class': 'dropdown-toggle', 'aria-expanded': false })
@@ -55,7 +55,7 @@
 
 			screenReaderSpan.text( screenReaderSpan.text() === medlabsScreenReaderText.expand ? medlabsScreenReaderText.collapse : medlabsScreenReaderText.expand );
 		});*/
-	}
+	//}
 
 	initMobileNavigation( $( '#mobile-navigation' ) );
 
@@ -85,6 +85,16 @@
 		});
 	})();
 
+	// Scroll to navbar stick
+	$( window ).on( 'scroll resize load', function() {
+		var scroll = $( window ).scrollTop();
+		var header = $( '#masthead .site-branding' ).height();
+		var navbar = $( '#masthead .site-navbar' ).height();
+
+		$( 'body' ).toggleClass( 'sticky', scroll >= header );
+		$( 'body' ).css( 'padding-top', $( 'body' ).hasClass( 'sticky' ) && $( window ).width() > 768 ? navbar+'px' : 0 );
+	});
+
 	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.
 	(function() {
 		if ( ! siteNavigation.length || ! siteNavigation.children().length ) {
@@ -93,11 +103,11 @@
 
 		// Toggle `focus` class to allow submenu access on tablets.
 		function toggleFocusClassTouchScreen() {
-			if ( 'none' === $( '.menu-toggle' ).css( 'display' ) ) {
+			if ( 'none' === $( '.mobile-navbar' ).css( 'display' ) ) {
 
 				$( document.body ).on( 'touchstart.medlabs', function( e ) {
-					if ( ! $( e.target ).closest( '.main-navigation li' ).length ) {
-						$( '.main-navigation li' ).removeClass( 'focus' );
+					if ( ! $( e.target ).closest( '.site-navigation li' ).length ) {
+						$( '.site-navigation li' ).removeClass( 'focus' );
 					}
 				});
 

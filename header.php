@@ -109,16 +109,18 @@
 					</div>
 				</div><!-- .flex-container -->
 			</div><!-- .mobile-navbar -->
-			<nav id="site-navigation" class="site-navigation">
-					<?php
-						wp_nav_menu( array(
-							'theme_location' => 'site-navigation',
-							'menu_id'        => 'site-navigation-menu',
-							'menu_class'		 => 'nav-menu flex-container',
-							'container'			 => 'false',
-						) );
-					?>
-			</nav><!-- #site-navigation -->
+			<div class="container">
+				<nav id="site-navigation" class="site-navigation">
+						<?php
+							wp_nav_menu( array(
+								'theme_location' => 'site-navigation',
+								'menu_id'        => 'site-navigation-menu',
+								'menu_class'		 => 'nav-menu flex-container',
+								'container'			 => 'false',
+							) );
+						?>
+				</nav><!-- #site-navigation -->
+			</div><!-- .container -->
 		</div><!-- .site-navbar -->
 	</header><!-- #masthead -->
 
