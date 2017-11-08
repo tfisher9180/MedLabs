@@ -6,6 +6,28 @@
 	background-color: #f7f7f7;
 	font-size: .86666667em;
 	overflow: hidden; // for the rotated box shadow on :before
+	transition: min-height 0.3s;
+
+	.nav-menu {
+		opacity: 1;
+		visibility: visible;
+		transition: transform 0.3s, opacity 0.2s, visibility 0.3s 0s;
+	}
+
+	.desktop-search & {
+		min-height: 60px;
+
+		.nav-menu {
+			transform: translateY(-100%);
+			opacity: 0;
+			visibility: hidden;
+			transition: transform 0.3s, opacity 0.2s, visibility 0s 0.3s;
+		}
+
+		.nav-search > a {
+			line-height: 60px;
+		}
+	}
 
 	&:before {
 		content: '';
@@ -20,24 +42,66 @@
 		transform: rotateZ(180deg);
 	}
 
+	.nav-search {
+		width: 45px;
+
+		> a {
+			transition: line-height 0.3s;
+		}
+
+		.search-bar {
+			position: absolute;
+			visibility: hidden;
+			opacity: 0;
+			top: 100%;
+			right: 70px; /* .nav-search width + 25px container padding */
+			transition: top 0.3s, opacity 0.2s, visibility 0s 0.3s;
+
+			.form-control {
+				flex: 0 0 auto;
+
+				&:last-of-type {
+					display: none;
+				}
+			}
+
+			.desktop-search & {
+				top: 0;
+				opacity: 1;
+				visibility: visible;
+				transition: top 0.3s, opacity 0.2s, visibility 0.3s 0s;
+			}
+
+			input[type="search"] {
+				height: 60px;
+				display: block;
+				font-weight: $font-weight-light;
+				border: none;
+				outline: none;
+				padding: 3px;
+				background: none;
+				cursor: text;
+				text-align: right;
+			}
+		}
+	}
+
+	a {
+		display: block;
+		padding: 0 15px;
+		line-height: 30px;
+		font-weight: $font-weight-stronger;
+		transition: color 0.2s linear;
+		text-transform: uppercase;
+	}
+
 	.container > .flex-container {
 		justify-content: flex-end;
 	}
 
-	.nav-menu {
-
-		> li + li {
-			border-left: 1px solid #b6b3af;
-		}
-
-		a {
-			display: block;
-			padding: 0 15px;
-			line-height: 30px;
-			font-weight: $font-weight-stronger;
-			transition: color 0.2s linear;
-			text-transform: uppercase;
-		}
+	.nav-menu > li + li,
+	.supernav-btn {
+		border-left: 1px solid #b6b3af;
 	}
 
 	@media only screen and (min-width: $device-sm) {

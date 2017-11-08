@@ -113,6 +113,22 @@
 		}
 	});
 
+	// Desktop search menu
+	$( '#supernav .nav-search > a' ).on( 'click', function( e ) {
+		e.preventDefault();
+
+		if ( $( this ).hasClass( 'submit' ) && $( '#supernav input[name=s]' ).val() ) {
+			$( '#supernav form' ).submit();
+			return;
+		} else {
+			$( 'body' ).toggleClass( 'desktop-search' );
+			$( this ).toggleClass( 'submit' );
+			setTimeout( function() {
+				$( '#supernav input[name=s]' ).focus();
+			}, 400);
+		}
+	});
+
 	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.
 	(function() {
 		if ( ! siteNavigation.length || ! siteNavigation.children().length ) {

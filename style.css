@@ -3764,6 +3764,33 @@ a:hover, a:focus, a:active {
 	background-color: #f7f7f7;
 	font-size: .86666667em;
 	overflow: hidden;
+	transition: min-height 0.3s;
+}
+
+#supernav .nav-menu {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.2s, visibility 0.3s 0s, -webkit-transform 0.3s;
+	transition: transform 0.3s, opacity 0.2s, visibility 0.3s 0s;
+	transition: transform 0.3s, opacity 0.2s, visibility 0.3s 0s, -webkit-transform 0.3s;
+}
+
+.desktop-search #supernav {
+	min-height: 60px;
+}
+
+.desktop-search #supernav .nav-menu {
+	-webkit-transform: translateY(-100%);
+	        transform: translateY(-100%);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s, visibility 0s 0.3s, -webkit-transform 0.3s;
+	transition: transform 0.3s, opacity 0.2s, visibility 0s 0.3s;
+	transition: transform 0.3s, opacity 0.2s, visibility 0s 0.3s, -webkit-transform 0.3s;
+}
+
+.desktop-search #supernav .nav-search > a {
+	line-height: 60px;
 }
 
 #supernav:before {
@@ -3780,23 +3807,71 @@ a:hover, a:focus, a:active {
 	        transform: rotateZ(180deg);
 }
 
-#supernav .container > .flex-container {
-	-webkit-box-pack: end;
-	    -ms-flex-pack: end;
-	        justify-content: flex-end;
+#supernav .nav-search {
+	width: 45px;
 }
 
-#supernav .nav-menu > li + li {
-	border-left: 1px solid #b6b3af;
+#supernav .nav-search > a {
+	transition: line-height 0.3s;
 }
 
-#supernav .nav-menu a {
+#supernav .nav-search .search-bar {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	top: 100%;
+	right: 70px;
+	/* .nav-search width + 25px container padding */
+	transition: top 0.3s, opacity 0.2s, visibility 0s 0.3s;
+}
+
+#supernav .nav-search .search-bar .form-control {
+	-webkit-box-flex: 0;
+	    -ms-flex: 0 0 auto;
+	        flex: 0 0 auto;
+}
+
+#supernav .nav-search .search-bar .form-control:last-of-type {
+	display: none;
+}
+
+.desktop-search #supernav .nav-search .search-bar {
+	top: 0;
+	opacity: 1;
+	visibility: visible;
+	transition: top 0.3s, opacity 0.2s, visibility 0.3s 0s;
+}
+
+#supernav .nav-search .search-bar input[type="search"] {
+	height: 60px;
+	display: block;
+	font-weight: 300;
+	border: none;
+	outline: none;
+	padding: 3px;
+	background: none;
+	cursor: text;
+	text-align: right;
+}
+
+#supernav a {
 	display: block;
 	padding: 0 15px;
 	line-height: 30px;
 	font-weight: 600;
 	transition: color 0.2s linear;
 	text-transform: uppercase;
+}
+
+#supernav .container > .flex-container {
+	-webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+
+#supernav .nav-menu > li + li,
+#supernav .supernav-btn {
+	border-left: 1px solid #b6b3af;
 }
 
 @media only screen and (min-width: 768px) {
