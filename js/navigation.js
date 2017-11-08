@@ -8,7 +8,7 @@
 (function( $ ) {
 
 	// init vars
-	var site, masthead, menuToggle, siteNavContain, siteNavigation, searchToggle;
+	var site, masthead, menuToggle, siteNavContain, siteNavigation, drawerToggle;
 
 	function initMobileNavigation( container ) {
 		var parentLink = container.find( '.menu-item-has-children > a, .page_item_has_children > a' );
@@ -46,7 +46,7 @@
 	menuToggle     = masthead.find( '.menu-toggle' );
 	siteNavContain = $( '.site-navigation' );
 	siteNavigation = siteNavContain.find( '> ul' );
-	searchToggle	 = $( '.nav-search > a' );
+	drawerToggle	 = $( '.nav-drawer > a' );
 
 	// Enable menuToggle.
 	(function() {
@@ -61,6 +61,10 @@
 
 		menuToggle.on( 'click.medlabs', function( e ) {
 			e.preventDefault();
+
+			// close any drawers
+			drawerToggle.closest( '.drawer-open' ).removeClass( 'drawer-open' );
+
 			site.add( $( 'body' ) ).toggleClass( 'mobile-navigation-toggled' );
 			siteNavContain.add( menuToggle ).toggleClass( 'toggled-on' );
 
@@ -89,10 +93,24 @@
 		$( 'body' ).css( 'padding-top', $( 'body' ).hasClass( 'sticky' ) ? navbar+'px' : 0 );
 	});
 
-	// Toggle search bar
-	searchToggle.on( 'click.medlabs', function( e ) {
+	// Toggle mobile drawers
+	drawerToggle.on( 'click.medlabs', function( e ) {
 		e.preventDefault();
-		$( 'body' ).toggleClass( 'show-search' );
+
+		// prevents click event from bubbling to document (function below)
+		// essentially prevents two click events from firing each time
+		e.stopPropagation();
+
+		$( 'body' ).toggleClass( 'drawer-click-handle' );
+		$( this ).parents( '.nav-drawer' ).toggleClass( 'drawer-open' );
+	});
+
+	$( document ).on( 'click.medlabs', '.drawer-click-handle', function( e ) {
+		// if the click target does not reside inside a drawer element
+		if ( ! $( e.target ).closest( '.nav-drawer' ).length ) {
+			$( 'body' ).removeClass( 'drawer-click-handle' );
+			drawerToggle.parents( '.drawer-open' ).removeClass( 'drawer-open' );
+		}
 	});
 
 	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.

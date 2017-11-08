@@ -112,12 +112,12 @@
 					</div>
 					<?php } ?>
 					<?php if ( $site_navigation_search ) { ?>
-					<div class="nav-btn nav-search">
+					<div class="nav-btn nav-search nav-drawer">
 						<a href="#">
 							<span class="screen-reader-text"><?php esc_html_e( 'Toggle search bar', 'medlabs' ); ?></span>
 							<i class="fa fa-search"></i>
 						</a>
-						<div class="search-bar">
+						<div class="drawer search-bar">
 							<?php get_search_form(); ?>
 						</div>
 					</div>

@@ -3794,7 +3794,7 @@ a:hover, a:focus, a:active {
 	display: block;
 	padding: 0 15px;
 	line-height: 30px;
-	font-weight: 700;
+	font-weight: 600;
 	transition: color 0.2s linear;
 	text-transform: uppercase;
 }
@@ -4038,6 +4038,18 @@ a:hover, a:focus, a:active {
 	#mobile-navigation {
 		display: none;
 	}
+}
+
+.nav-drawer .drawer {
+	display: none;
+}
+
+.nav-drawer.drawer-open .drawer {
+	display: block;
+}
+
+.nav-drawer.drawer-open > a {
+	background: #ff963c;
 }
 
 .nav-menu,
@@ -4438,7 +4450,6 @@ body.mobile-navigation-toggled {
 }
 
 .site-header .site-navbar .mobile-navbar .search-bar {
-	display: none;
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -4457,10 +4468,6 @@ body.mobile-navigation-toggled {
 	height: 100%;
 	z-index: 1;
 	pointer-events: none;
-}
-
-.show-search .site-header .site-navbar .mobile-navbar .search-bar {
-	display: block;
 }
 
 .site-header .site-navbar .mobile-navbar .search-bar form.search-form {

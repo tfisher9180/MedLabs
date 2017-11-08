@@ -34,7 +34,7 @@
 			display: block;
 			padding: 0 15px;
 			line-height: 30px;
-			font-weight: $font-weight-strongest;
+			font-weight: $font-weight-stronger;
 			transition: color 0.2s linear;
 			text-transform: uppercase;
 		}
@@ -277,6 +277,24 @@
 
 	@media only screen and (min-width: $device-sm) {
 		display: none;
+	}
+}
+
+.nav-drawer {
+
+	.drawer {
+		display: none;
+	}
+
+	&.drawer-open {
+
+		.drawer {
+			display: block;
+		}
+
+		> a {
+			background: $theme-primary-lighter;
+		}
 	}
 }
 
