@@ -10,6 +10,7 @@ var basePaths = {
 var gulp = require('gulp')
 var autoprefixer = require('autoprefixer');
 var postcss = require('gulp-postcss');
+var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var del = require('del');
 
@@ -26,8 +27,19 @@ gulp.task('css', function() {
 	.pipe(gulp.dest('./'));
 });
 
+gulp.task('js', function() {
+	var scripts = [
+		basePaths.js + 'navigation.js',
+		basePaths.js + 'skip-link-focus-fix.js'
+	];
+	return gulp.src(scripts)
+		.pipe(concat('theme.js'))
+		.pipe(gulp.dest(basePaths.js));
+});
+
 gulp.task('watch', function() {
-	gulp.watch(['./**/*.css', './**/*.scss' ], ['css']);
+	gulp.watch(['./**/*.css', './**/*.scss'], ['css']);
+	gulp.watch([basePaths.js + '**/*.js', '!theme.js'], ['js']);
 });
 
 gulp.task('clean-src', function() {
@@ -44,4 +56,4 @@ gulp.task('copy-assets', ['clean-src'], function() {
 	return stream;
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'js']);

@@ -29,6 +29,7 @@
     .tagline {
       display: flex;
       max-width: 50%;
+      flex-direction: column;
 
       .site-description {
         margin-bottom: 0;
@@ -36,7 +37,16 @@
         line-height: 1.3;
         text-transform: uppercase;
         color: $theme-gray;
-        text-align: center;
+        font-weight: $font-weight-normal;
+        text-align: right;
+
+        &.line-two {
+          display: none;
+
+          @media only screen and (min-width: $device-sm) {
+            display: block;
+          }
+        }
       }
     }
   }

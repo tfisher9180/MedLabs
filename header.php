@@ -24,6 +24,7 @@
 	);
 
 	$site_navigation_search = get_theme_mod( 'site_navigation_search' );
+	$title_tagline_two = get_theme_mod( 'title_tagline_two', 'Open 7 Days a Week' );
 
 ?>
 
@@ -103,7 +104,10 @@
 						if ( $description || is_customize_preview() ) : ?>
 							<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 						<?php
-						endif; ?>
+					endif; ?>
+						<?php if ( display_header_text() && $title_tagline_two ) { ?>
+							<p class="site-description line-two"><?php printf( esc_html__( '%s', 'medlabs' ), $title_tagline_two ); ?></p>
+						<?php } ?>
 					</div><!-- .tagline -->
 				</div><!-- .flex-container -->
 			</div><!-- .container -->
