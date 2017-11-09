@@ -8,23 +8,31 @@
  *
  * @package MedLabs
  */
+?>
+
+<?php
+
+	$disclaimer_txt = get_theme_mod( 'footer_disclaimer', '' );
 
 ?>
 
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'medlabs' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'medlabs' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'medlabs' ), 'medlabs', '<a href="http://timothyfisherdev.com">Timothy Fisher</a>' );
-			?>
-		</div><!-- .site-info -->
+		<div class="container">
+			<div class="flex-container">
+				<div class="disclaimer"><?php printf( esc_html__( '%s', 'medlabs' ), $disclaimer_txt ); ?></div>
+				<div class="site-info">
+					<div class="social-box">
+						<div class="h1"><?php echo esc_html__( 'Connect With Us', 'medlabs' ); ?></div>
+						<?php medlabs_get_social(); ?>
+					</div>
+					<div class="copyright">
+						<?php printf( esc_html__( '&copy; %1$s %2$s', 'medlabs' ), date( 'Y' ), get_bloginfo( 'name' ) ); ?>
+					</div>
+				</div><!-- .site-info -->
+			</div><!-- .flex-container -->
+		</div><!-- .container -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

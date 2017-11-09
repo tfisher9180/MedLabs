@@ -64,3 +64,45 @@ body.mobile-navigation-toggled {
 .flex-container {
   display: flex;
 }
+
+.social,
+.social > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social {
+
+  > a {
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+
+    + a {
+      margin-left: 10px;
+    }
+
+    &.icon-facebook {
+      background-color: $theme-facebook;
+    }
+
+    &.icon-twitter {
+      background-color: $theme-twitter;
+    }
+
+    &.icon-instagram {
+      background-color: $theme-instagram;
+    }
+
+    &.icon-google {
+      background-color: $theme-google;
+    }
+
+    &.icon-linkedin {
+      background-color: $theme-linkedin;
+    }
+  }
+}

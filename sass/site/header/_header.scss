@@ -53,13 +53,14 @@
 
   .site-navbar {
     background-color: $theme-primary;
+    box-shadow: 0px 4px 8px 0px rgba(#000,0.25);
 
     .sticky & {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 999999;
+      z-index: 99999;
     }
 
     a {
@@ -230,10 +231,6 @@
       @media only screen and (min-width: $device-sm) {
         display: none;
       }
-    }
-
-    @media only screen and (min-width: $device-sm) {
-      box-shadow: 0px 4px 8px 0px rgba(#000,0.25);
     }
   }
 }

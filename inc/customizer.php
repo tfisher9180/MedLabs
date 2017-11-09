@@ -56,6 +56,27 @@ function medlabs_customize_register( $wp_customize ) {
 		'panel'						=> 'theme_options',
 	));
 
+	$wp_customize->add_section( 'footer_options', array(
+		'capability'			=> 'edit_theme_options',
+		'title'						=> __( 'Footer Options', 'medlabs' ),
+		'panel'						=> 'theme_options',
+	));
+
+	$wp_customize->add_setting( 'footer_disclaimer', array(
+		'default'						=> '',
+		'type'							=> 'theme_mod',
+		'capability'				=> 'edit_theme_options',
+		'transport'					=> '',
+		'sanitize_callback'	=> 'sanitize_text_field',
+	));
+
+	$wp_customize->add_control( 'footer_disclaimer', array(
+		'type'							=> 'textarea',
+		'section'						=> 'footer_options',
+		'label'							=> __( 'Footer Disclaimer', 'medlabs' ),
+		'description'				=> __( 'Shown on wider screens.', 'medlabs' ),
+	));
+
 	$wp_customize->add_setting( 'title_tagline_two', array(
 		'default'						=> 'Open 7 Days a Week',
 		'type'							=> 'theme_mod',
@@ -159,6 +180,92 @@ function medlabs_customize_register( $wp_customize ) {
 		'section'						=> 'site_navigation',
 		'label'							=> __( 'Show search menu (mobile devices less than 768px)', 'medlabs' ),
 	));
+
+	/*
+	 * Social Icons
+	 */
+	$wp_customize->add_section( 'social_media', array(
+		'capability'				=> 'edit_theme_options',
+		'title'							=> __( 'Social Media', 'srcc' ),
+		'description'				=> 'Filled in fields will show a social media FontAwesome icon in certain areas.',
+		'panel'							=> 'theme_options',
+	) );
+
+	$wp_customize->add_setting( 'url_facebook', array(
+		'default'			=> 'https://www.facebook.com',
+		'type'				=> 'theme_mod',
+		'capability'		=> 'edit_theme_options',
+		'transport'			=> '',
+		'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_facebook', array(
+		'type'				=> 'url',
+		'section'			=> 'social_media',
+		'label'				=> __( 'Facebook URL', 'srcc' ),
+		'description'		=> '',
+	) );
+
+	$wp_customize->add_setting( 'url_twitter', array(
+		'default'			=> 'https://www.twitter.com',
+		'type'				=> 'theme_mod',
+		'capability'		=> 'edit_theme_options',
+		'transport'			=> '',
+		'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_twitter', array(
+		'type'				=> 'url',
+		'section'			=> 'social_media',
+		'label'				=> __( 'Twitter URL', 'srcc' ),
+		'description'		=> '',
+	) );
+
+	$wp_customize->add_setting( 'url_instagram', array(
+		'default'			=> 'https://www.instagram.com',
+		'type'				=> 'theme_mod',
+		'capability'		=> 'edit_theme_options',
+		'transport'			=> '',
+		'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_instagram', array(
+		'type'				=> 'url',
+		'section'			=> 'social_media',
+		'label'				=> __( 'Instagram URL', 'srcc' ),
+		'description'		=> '',
+	) );
+
+	$wp_customize->add_setting( 'url_google', array(
+		'default'			=> '',
+		'type'				=> 'theme_mod',
+		'capability'		=> 'edit_theme_options',
+		'transport'			=> '',
+		'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_google', array(
+		'type'				=> 'url',
+		'section'			=> 'social_media',
+		'label'				=> __( 'Google URL', 'srcc' ),
+		'description'		=> '',
+	) );
+
+	$wp_customize->add_setting( 'url_linkedin', array(
+		'default'			=> 'https://www.linkedin.com',
+		'type'				=> 'theme_mod',
+		'capability'		=> 'edit_theme_options',
+		'transport'			=> '',
+		'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_linkedin', array(
+		'type'				=> 'url',
+		'section'			=> 'social_media',
+		'label'				=> __( 'LinkedIn URL', 'srcc' ),
+		'description'		=> '',
+	) );
+
 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(

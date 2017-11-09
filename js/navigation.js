@@ -8,7 +8,18 @@
 (function( $ ) {
 
 	// init vars
-	var site, masthead, menuToggle, siteNavContain, siteNavigation, drawerToggle;
+	var site 					 		= $( '#page' );
+	var masthead       		= $( '#masthead' );
+	var menuToggle     		= masthead.find( '.menu-toggle' );
+	var siteBranding			= masthead.find( '.site-branding' );
+	var siteNavbar				= masthead.find( '.site-navbar' );
+	var siteNavContain 		= $( '.site-navigation' );
+	var siteNavigation 		= siteNavContain.find( '> ul' );
+	var drawerToggle	 		= $( '.nav-drawer > a' );
+	var supernav					= $( '#supernav' );
+	var supernavToggle		= supernav.find( '.nav-search > a' );
+	var supernavSearch		= supernav.find( 'input[name=s]' );
+	var supernavForm			= supernav.find( 'form' );
 
 	function initMobileNavigation( container ) {
 		var parentLink = container.find( '.menu-item-has-children > a, .page_item_has_children > a' );
@@ -41,13 +52,6 @@
 
 	initMobileNavigation( $( '#mobile-navigation' ) );
 
-	site 					 = $( '#page' );
-	masthead       = $( '#masthead' );
-	menuToggle     = masthead.find( '.menu-toggle' );
-	siteNavContain = $( '.site-navigation' );
-	siteNavigation = siteNavContain.find( '> ul' );
-	drawerToggle	 = $( '.nav-drawer > a' );
-
 	// Enable menuToggle.
 	(function() {
 
@@ -75,9 +79,9 @@
 	// Scroll to navbar stick
 	$( window ).on( 'scroll resize load', function() {
 		var scroll = $( window ).scrollTop();
-		var header = $( '#masthead .site-branding' ).height();
+		var navbar = siteNavbar.height();
+		var header = siteBranding.height();
 		var supernav = $( '#supernav' ).is( ':visible' ) ? $( '#supernav' ).outerHeight() : 0;
-		var navbar = $( '#masthead .site-navbar' ).height();
 		var adminBar = $( '#wpadminbar' ).is( ':visible' ) ? $( '#wpadminbar' ).outerHeight() : 0;
 
 		var stick;
@@ -114,17 +118,17 @@
 	});
 
 	// Desktop search menu
-	$( '#supernav .nav-search > a' ).on( 'click', function( e ) {
+	supernavToggle.on( 'click', function( e ) {
 		e.preventDefault();
 
-		if ( $( this ).hasClass( 'submit' ) && $( '#supernav input[name=s]' ).val() ) {
-			$( '#supernav form' ).submit();
+		if ( $( this ).hasClass( 'submit' ) && supernavSearch.val() ) {
+			supernavForm.submit();
 			return;
 		} else {
 			$( 'body' ).toggleClass( 'desktop-search' );
 			$( this ).toggleClass( 'submit' );
 			setTimeout( function() {
-				$( '#supernav input[name=s]' ).focus();
+				supernavSearch.focus();
 			}, 400);
 		}
 	});

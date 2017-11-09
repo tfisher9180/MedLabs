@@ -190,6 +190,32 @@ function medlabs_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'medlabs_scripts' );
 
+function medlabs_get_social() {
+	$social_media = array(
+		'facebook'			=> get_theme_mod( 'url_facebook', 'https://www.facebook.com' ),
+		'twitter'				=> get_theme_mod( 'url_twitter', 'https://www.twitter.com' ),
+		'instagram'			=> get_theme_mod( 'url_instagram', 'https://www.instagram.com' ),
+		'google-plus'		=> get_theme_mod( 'url_google', '' ),
+		'linkedin'			=> get_theme_mod( 'url_linkedin', 'https://www.linkedin.com' ),
+	);
+
+	$social_media = array_filter( $social_media, function( $value, $key ) {
+		return $value;
+	}, ARRAY_FILTER_USE_BOTH ); // for clarity
+
+	if ( ! empty( $social_media ) ) { ?>
+		<div class="social">
+		<?php foreach ( $social_media as $platform => $url ) { ?>
+
+			<a href="<?php printf( esc_html__( '%s', 'medlabs' ), esc_url( trim( $url ) ) ); ?>" target="_blank" class="icon-<?php printf( esc_attr__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>">
+				<span class="screen-reader-text"><?php printf( esc_html__( '%s', 'medlabs' ), ucwords( $platform ) ); ?></span>
+				<i class="fa fa-<?php printf( esc_html__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>"></i>
+			</a>
+		<?php } ?>
+		</div>
+	<?php }
+}
+
 /**
  * Implement the Custom Header feature.
  */
