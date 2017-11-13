@@ -140,12 +140,22 @@
 
 			&:hover,
 			&:focus,
-			&.focus {
+			&.focus,
+			&.current_page_item,
+			&.current-menu-item,
+			&.current_page_parent,
+			&.current-menu-parent
+			 {
 
 				> a {
 					background-color: $theme-primary-alt;
 				}
+			}
 
+			&:hover,
+			&:focus,
+			&.focus {
+				
 				> .sub-menu {
 					visibility: visible;
 					opacity: 1;
@@ -175,17 +185,19 @@
 
 		li {
 			border-top: 1px solid $theme-primary-border;
+
+			a:hover,
+			&.current_page_ancestor,
+			&.current-menu-ancestor {
+				color: $theme-primary-darker;
+				background-color: inherit;
+			}
 		}
 
 		a {
 			display: block;
 			text-transform: capitalize;
 			padding: 0 25px;
-
-			&:hover {
-				color: $theme-primary-darker;
-				background-color: inherit;
-			}
 		}
 	}
 
@@ -266,6 +278,8 @@
 
 		.current_page_item,
 		.current-menu-item,
+		.current_page_parent,
+		.current-menu-parent,
 		.current_page_ancestor,
 		.current-menu-ancestor {
 

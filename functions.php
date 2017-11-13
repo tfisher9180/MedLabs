@@ -7,6 +7,11 @@
  * @package MedLabs
  */
 
+$blog_name 						= get_bloginfo( 'name' );
+$blog_name_slug 				= strtolower( str_replace( ' ', '-', trim( $blog_name ) ) );
+$blog_name_category_name 		= ucwords( $blog_name ) . ' Blog';
+$blog_name_category_slug 		= $blog_name_slug . '-blog';
+
 if ( ! function_exists( 'medlabs_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -41,6 +46,9 @@ if ( ! function_exists( 'medlabs_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
+		set_post_thumbnail_size( 1024, 536, true );
+		add_image_size( 'medlabs-blog-featured-image', 1024, 536, true );
+		add_image_size( 'medlabs-blog-page-header', 1400, 300, true );
 
 		$nav_menus = array(
 			'site-navigation' 			=> esc_html__( 'Site Navigation', 'medlabs' ),
@@ -193,12 +201,12 @@ add_action( 'wp_enqueue_scripts', 'medlabs_scripts' );
 function medlabs_get_social() {
 	$social_media = array(
 		'facebook'			=> get_theme_mod( 'url_facebook', 'https://www.facebook.com' ),
-		'twitter'				=> get_theme_mod( 'url_twitter', 'https://www.twitter.com' ),
+		'twitter'			=> get_theme_mod( 'url_twitter', 'https://www.twitter.com' ),
 		'instagram'			=> get_theme_mod( 'url_instagram', 'https://www.instagram.com' ),
 		'google-plus'		=> get_theme_mod( 'url_google', '' ),
 		'linkedin'			=> get_theme_mod( 'url_linkedin', 'https://www.linkedin.com' ),
 	);
-
+	
 	$social_media = array_filter( $social_media, function( $value, $key ) {
 		return $value;
 	}, ARRAY_FILTER_USE_BOTH ); // for clarity
@@ -207,7 +215,7 @@ function medlabs_get_social() {
 		<div class="social">
 		<?php foreach ( $social_media as $platform => $url ) { ?>
 
-			<a href="<?php printf( esc_html__( '%s', 'medlabs' ), esc_url( trim( $url ) ) ); ?>" target="_blank" class="icon-<?php printf( esc_attr__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>">
+			<a href="<?php printf( esc_html__( '%s', 'medlabs' ), esc_url( trim( $url ) ) ); ?>" target="_blank" class="icon icon-<?php printf( esc_attr__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>">
 				<span class="screen-reader-text"><?php printf( esc_html__( '%s', 'medlabs' ), ucwords( $platform ) ); ?></span>
 				<i class="fa fa-<?php printf( esc_html__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>"></i>
 			</a>
@@ -215,6 +223,48 @@ function medlabs_get_social() {
 		</div>
 	<?php }
 }
+
+function medlabs_get_social_share( $permalink, $article_title ) {
+	$social_media = array(
+		'facebook'			=> 'http://www.facebook.com/sharer.php?u='.$permalink.'&t='.$article_title,
+		'twitter'			=> 'http://www.twitter.com/home/?status='.$article_title.' - '.$permalink,
+		'linkedin'			=> 'http://www.linkedin.com/shareArticle?mini=true&url='.$permalink.'&title='.$article_title,
+	); ?>
+
+	<div class="social">
+	<?php foreach ( $social_media as $platform => $url ) { ?>
+		<a href="<?php printf( esc_html__( '%s', 'medlabs' ), esc_url( $url ) ); ?>" target="_blank" class="icon icon-<?php printf( esc_attr__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>">
+			<span class="screen-reader-text"><?php printf( esc_html__( '%s', 'medlabs' ), 'Share this article on '.ucwords( $platform ) ); ?></span>
+			<i class="fa fa-<?php printf( esc_html__( '%s', 'medlabs' ), strtolower( $platform ) ); ?>"></i>
+		</a>
+	<?php } ?>
+	</div>
+<?php }
+
+function medlabs_init_blog_categories() {
+	global $blog_name_category_slug;
+	global $blog_name_category_name;
+
+	if ( ! term_exists( $blog_name_category_slug, 'category' ) ) {
+		wp_insert_term(
+			'Blog Footer Post',
+			'category',
+			array(
+				'slug'			=> 'blog-footer-post',
+				'description'	=> 'Posts assigned to this category will be appended to the bottom of every post.'
+			)
+		);
+		wp_insert_term(
+			$blog_name_category_name,
+			'category',
+			array(
+				'slug'			=> $blog_name_category_slug,
+				'description'	=> 'All posts that should be displayed in the site\'s blog should be assigned to this category'
+			)
+		);
+	}
+}
+add_action( 'init', 'medlabs_init_blog_categories' );
 
 /**
  * Implement the Custom Header feature.
@@ -234,7 +284,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/customizer/customizer.php';
 
 /**
  * Load Jetpack compatibility file.

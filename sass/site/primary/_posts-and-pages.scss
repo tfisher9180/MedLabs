@@ -1,19 +1,171 @@
+.page-header {
+	padding: 25px 0;
+	background-color: $theme-page-header;
+
+	.entry-meta {
+		color: $theme-page-header-text;
+		font-size: 0.933em;
+		text-transform: uppercase;
+		line-height: 1.5em;
+
+		a {
+			color: inherit;
+			font-size: 0.9em;
+			margin-bottom: 1em;
+			font-weight: $font-weight-stronger;
+
+			@media only screen and (min-width: $device-xs) {
+				font-size: 1.067em;
+			}
+		}
+	}
+
+	.entry-title {
+		margin: 0;
+		font-size: 1.75em;
+		color: #fff;
+		text-transform: capitalize;
+
+		@media only screen and (min-width: $device-xs) {
+			font-size: 2em;
+		}
+	}
+}
+
+.featured-image {
+	margin-bottom: 1.25em;
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.entry-content {
+	font-weight: $font-weight-normal;
+
+	h2,
+	h3,
+	h4 {
+		margin-top: 1.5em;
+		margin-bottom: 1rem;
+		font-weight: $font-weight-stronger;
+	}
+
+	a:not(.icon) {
+		text-decoration: underline;
+	}
+
+	ul {
+		margin: 12.5px 0;
+		text-align: left;
+		margin-top: -0.4375rem;
+		margin-bottom: -0.4375rem;
+		padding-bottom: 1em;
+
+		li {
+			position: relative;
+			padding-top: 0.4375rem;
+			padding-bottom: 0.4375rem;
+			padding-left: 0.8em;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 1.075em;
+				left: 0;
+				background: $theme-primary-border;
+				width: 6px;
+				height: 6px;
+			}
+		}
+	}
+
+	hr {
+		border: 0;
+		height: 0;
+		border-top: 1px solid $theme-primary-border;
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+}
+
+.entry-footer {
+
+	.share-this {
+		margin-top: 50px;
+		padding-top: 25px;
+		border-top: 1px solid $theme-border-color;
+
+		.share-this-title {
+			margin-bottom: 1rem;
+		}
+	}
+
+	.social {
+		justify-content: flex-start;
+
+		li {
+			padding-top: 0.4375rem;
+			padding-bottom: 0.4375rem;
+		}
+	}
+}
+
+.single {
+
+	.site-main {
+		background-color: $theme-off-white;
+
+		.widget-area {
+			display: none;
+
+			@media only screen and (min-width: $device-sm) {
+				display: block;
+			}
+		}
+
+		.sidebar-layout {
+			padding-top: 25px;
+			padding-bottom: 25px;
+
+			@media only screen and (min-width: $device-sm) {
+				padding-top: 50px;
+				padding-bottom: 50px;
+				display: flex;
+				justify-content: space-between;
+				align-items: stretch;
+
+				.hentry {
+					padding-right: 25px;
+					width: 66.66666667%;
+
+					@media only screen and (min-width: $device-sm) {
+						padding-right: 50px;
+					}
+				}
+
+				.widget-area {
+					padding-left: 25px;
+					border-left: 1px solid $theme-border-color;
+					width: 33.33333333%;
+
+					@media only screen and (min-width: $device-sm) {
+						padding-left: 50px;
+					}
+				}
+			}
+		}
+	}
+}
+
 .sticky {
 	display: block;
 }
 
-.hentry {
-	margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
 	display: none;
-}
-
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
 }
 
 .page-links {

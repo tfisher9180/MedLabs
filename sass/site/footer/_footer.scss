@@ -13,12 +13,13 @@
 
   .disclaimer {
     display: none;
+    max-width: 66.66666667%;
+    flex: 0 0 auto;
+    font-size: 0.6875rem;
+    padding-right: 50px;
 
     @media only screen and (min-width: $device-sm) {
       display: block;
-      max-width: 60%;
-      font-size: 0.6875rem;
-      padding-right: 25px;
     }
   }
 
@@ -28,12 +29,26 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    @media only screen and (min-width: $device-sm) {
+      padding-left: 50px;
+      text-align: left;
+      align-items: flex-start;
+
+      .social {
+        justify-content: flex-start;
+      }
+    }
   }
 
   .h1 {
     color: inherit;
     font-size: 1.75em;
     margin-bottom: 0.5em;
+
+    @media only screen and (min-width: $device-md) {
+      font-size: 2em;
+    }
   }
 
   .copyright {

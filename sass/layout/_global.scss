@@ -24,6 +24,7 @@ body.mobile-navigation-toggled {
   position: relative;
   transition: left 0.4s;
   left: 0;
+  background-color: #fff;
   //transform: translate3d(0, 0, 0); // can't use these because of a bug in chrome and firefox
   // https://www.sitepoint.com/community/t/css3-tip-of-the-week-no-1/32066
 
@@ -83,6 +84,10 @@ body.mobile-navigation-toggled {
 
     + a {
       margin-left: 10px;
+
+      @media only screen and (min-width: $device-sm) {
+        margin-left: 20px;
+      }
     }
 
     &.icon-facebook {
@@ -103,6 +108,10 @@ body.mobile-navigation-toggled {
 
     &.icon-linkedin {
       background-color: $theme-linkedin;
+    }
+
+    @media only screen and (min-width: $device-md) {
+      font-size: 1.5rem;
     }
   }
 }

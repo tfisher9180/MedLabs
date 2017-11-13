@@ -7,24 +7,32 @@
  * @package MedLabs
  */
 
+global $blog_name_category_slug; 
+
 ?>
 
+<?php if ( in_category( $blog_name_category_slug ) ) { ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+	<?php if ( has_post_thumbnail() ) { ?>
+	<div class="featured-image">
+		<?php the_post_thumbnail(); ?>
+	</div>
+	<?php } ?>
+
+	<?php if ( is_home() ) : ?>
 	<header class="entry-header">
 		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+		the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 
 		if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php medlabs_posted_on(); ?>
 		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
+	<?php endif; ?>
 
 	<div class="entry-content">
 		<?php
@@ -41,14 +49,34 @@
 				get_the_title()
 			) );
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'medlabs' ),
-				'after'  => '</div>',
-			) );
+			if ( is_singular() ) {
+				$args = array(
+					'post_type'			=> 'post',
+					'category_name'		=> 'blog-footer-post',
+					'posts_per_page'	=> 1,
+				);
+
+				$blog_footer_post = new WP_Query( $args );
+			
+				if ( $blog_footer_post->have_posts() ) { 
+					$blog_footer_post->the_post();
+
+					the_title( '<h2>', '</h2>' ); the_content();
+					wp_reset_query();
+				}
+			}
 		?>
 	</div><!-- .entry-content -->
 
+	<?php if ( is_singular() ) { ?>
 	<footer class="entry-footer">
-		<?php medlabs_entry_footer(); ?>
+		<div class="share-this">
+			<h3 class="share-this-title"><?php echo esc_html__( 'Share this Article', 'medlabs' ); ?></h3>
+			<?php medlabs_get_social_share( get_the_permalink(), get_the_title() ); ?>
+		</div>
 	</footer><!-- .entry-footer -->
+	<?php } ?>
+
 </article><!-- #post-<?php the_ID(); ?> -->
+
+<?php } ?>
